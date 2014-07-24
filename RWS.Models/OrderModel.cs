@@ -1,6 +1,6 @@
 ﻿namespace RWS.Models
 {
-    public class Order
+    public class OrderModel
     {
         public string Source { get; set; }
         public int Company { get; set; }

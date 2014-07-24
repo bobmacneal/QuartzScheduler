@@ -17,7 +17,7 @@ namespace QuartzSpike.Controllers
         {
             try
             {
-                var orderData = JsonConvert.DeserializeObject<Order>(jsonOrderData.ToString());
+                var orderData = JsonConvert.DeserializeObject<OrderModel>(jsonOrderData.ToString());
                 string correlationId = orderData.OurReferenceNumber;
                 string source = orderData.Source;
                 if (correlationId.IsNullOrWhiteSpace())
@@ -28,6 +28,7 @@ namespace QuartzSpike.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Source not provided.");
                 }
+
                 var orderService = new OrderService(new QuartzFactory().Scheduler);
                 if (orderService.CreateOrder(orderData))
                 {
@@ -38,7 +39,7 @@ namespace QuartzSpike.Controllers
             catch (Exception ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest,
-                    string.Format("Order Creation Error:\n{0}", ex.Message)
+                    string.Format("OrderModel Creation Error:\n{0}", ex.Message)
                     );
             }
         }

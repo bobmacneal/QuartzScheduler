@@ -17,6 +17,7 @@ namespace QuartzSpike
         {
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
             IScheduler scheduler = schedulerFactory.GetScheduler();
+            
             scheduler.Start();
             return scheduler;
         }
