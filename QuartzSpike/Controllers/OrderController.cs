@@ -29,11 +29,13 @@ namespace QuartzSpike.Controllers
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Source not provided.");
                 }
 
-                var orderService = new OrderService(new QuartzFactory().Scheduler);
-                if (orderService.CreateOrder(orderData))
-                {
-                    return Request.CreateResponse(HttpStatusCode.Created, orderData);
-                }
+                var orderCreationService = new OrderCreationService();
+
+                //var orderService = new OrderService(new QuartzFactory().Scheduler);
+                //if (orderService.CreateOrder(orderData))
+                //{
+                //    return Request.CreateResponse(HttpStatusCode.Created, orderData);
+                //}
                 return Request.CreateResponse(HttpStatusCode.NotModified);
             }
             catch (Exception ex)
