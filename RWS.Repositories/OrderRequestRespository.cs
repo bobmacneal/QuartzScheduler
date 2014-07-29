@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,32 +13,23 @@ namespace RWS.Repositories
 
         public virtual DbSet<OrderRequest> OrderRequests { get; set; }
 
-        public bool AddRequest(string payload)
+        public OrderRequest AddRequest(string payload)
         {
-            try
+            var orderRequest = new OrderRequest
             {
-                var orderRequest = new OrderRequest
-                {
-                    Status = 1,
-                    Payload = payload
-                };
-                OrderRequests.Add(orderRequest);
-                SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+                Status = 1,
+                Payload = payload
+            };
+            OrderRequests.Add(orderRequest);
+            SaveChanges();
+            return orderRequest;
         }
 
         public IList<OrderRequest> GetUnproccessedOrderRequests()
         {
-            using (var context = new OrderRequestRespository())
-            {
-                IQueryable<OrderRequest> orderRequests = context.OrderRequests.Where(s => s.Status == 1);
-                return orderRequests.ToList();
-            }
+            IQueryable<OrderRequest> orderRequests =
+                OrderRequests.Where(s => s.Status == (int) OrderProcessStatusEnum.Initial);
+            return orderRequests.ToList();
         }
 
         public void UpdateStatus(OrderRequest orderRequest, OrderProcessStatusEnum orderProcessStatus)
@@ -53,6 +43,12 @@ namespace RWS.Repositories
             modelBuilder.Entity<OrderRequest>()
                 .Property(e => e.Payload)
                 .IsUnicode(false);
+        }
+
+        public void DeleteRequest(OrderRequest orderRequest)
+        {
+            OrderRequests.Remove(orderRequest);
+            SaveChanges();
         }
     }
 }

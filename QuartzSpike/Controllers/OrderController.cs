@@ -6,6 +6,7 @@ using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RWS.Models;
+using RWS.Repositories;
 using RWS.Services;
 
 namespace QuartzSpike.Controllers
@@ -29,13 +30,9 @@ namespace QuartzSpike.Controllers
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Source not provided.");
                 }
 
-                var orderCreationService = new OrderCreationService();
+                var orderCreationService = new OrderCreationService(new OrderRequestRespository());
+                orderCreationService.AddOrderRequest(jsonOrderData.ToString());
 
-                //var orderService = new OrderService(new QuartzFactory().Scheduler);
-                //if (orderService.CreateOrder(orderData))
-                //{
-                //    return Request.CreateResponse(HttpStatusCode.Created, orderData);
-                //}
                 return Request.CreateResponse(HttpStatusCode.NotModified);
             }
             catch (Exception ex)

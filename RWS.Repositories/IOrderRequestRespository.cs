@@ -6,7 +6,8 @@ namespace RWS.Repositories
     public interface IOrderRequestRespository
     {
         DbSet<OrderRequest> OrderRequests { get; set; }
-        bool AddRequest(string payload);
+        OrderRequest AddRequest(string payload);
+        void DeleteRequest(OrderRequest orderRequest);
         IList<OrderRequest> GetUnproccessedOrderRequests();
         void UpdateStatus(OrderRequest orderRequest, OrderProcessStatusEnum orderProcessStatus);
     }

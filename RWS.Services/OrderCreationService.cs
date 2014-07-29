@@ -6,9 +6,9 @@ namespace RWS.Services
     {
         private readonly OrderRequestRespository _repository;
 
-        public OrderCreationService()
+        public OrderCreationService(OrderRequestRespository repository)
         {
-            _repository = new OrderRequestRespository();
+            _repository = repository;
         }
 
         public void AddOrderRequest(string requestPayload)

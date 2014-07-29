@@ -313,6 +313,10 @@
       <Project>{aff4beb5-d135-4750-a173-4d09cffa6287}</Project>
       <Name>RWS.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RWS.Repositories\RWS.Repositories.csproj">
+      <Project>{8356afed-466f-42b6-8a2b-a96fdac06095}</Project>
+      <Name>RWS.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RWS.Services\RWS.Services.csproj">
       <Project>{06fb89be-4195-4d70-a33a-8ac652b4e98a}</Project>
       <Name>RWS.Services</Name>

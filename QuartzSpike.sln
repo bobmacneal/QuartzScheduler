@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs", "RWS.Jobs\RWS.Jo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.IntgTests", "RWS.IntgTests\RWS.IntgTests.csproj", "{DB6C02E6-E3BF-42FC-9C43-F6767855600B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs.Test", "RWS.Jobs.Test\RWS.Jobs.Test.csproj", "{1A7EC192-A837-45EF-90D9-5C6959C4107B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs.UnitTests", "RWS.Jobs.Test\RWS.Jobs.UnitTests.csproj", "{1A7EC192-A837-45EF-90D9-5C6959C4107B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89CDCD97-D00B-41A9-88F0-3E98D0AA776A}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89CDCD
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs.IntgTests", "RWS.Jobs.IntgTests\RWS.Jobs.IntgTests.csproj", "{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{1A7EC192-A837-45EF-90D9-5C6959C4107B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A7EC192-A837-45EF-90D9-5C6959C4107B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A7EC192-A837-45EF-90D9-5C6959C4107B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using Quartz;
 using RWS.Models;
 using RWS.Repositories;
 
-namespace RWS.Jobs.Test
+namespace RWS.Jobs.UnitTests
 {
     [TestClass]
     public class IncomingOrderTests
