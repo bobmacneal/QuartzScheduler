@@ -10,7 +10,7 @@ namespace RWS.IntgTests.Repositories
         public void AddRequest()
         {
             var repository = new OrderRequestRespository();
-            Assert.IsTrue(repository.AddRequest("Test Payload"));
+            repository.AddRequest("Test Payload"));
         }
 
         [TestMethod]

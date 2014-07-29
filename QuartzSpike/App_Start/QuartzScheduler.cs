@@ -1,38 +1,50 @@
-﻿using Quartz;
+﻿using System;
+using System.Configuration;
+using Common.Logging;
+using Common.Logging.Simple;
+using Quartz;
 using Quartz.Impl;
+using Quartz.Impl.Matchers;
 using RWS.Jobs;
 
 namespace QuartzSpike
 {
     public class QuartzScheduler
     {
-        public static void InitializeIncomingOrderJobs()
+        public static void InitializeQuartzJobs()
         {
+            LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter {Level = LogLevel.Debug};
             IScheduler scheduler = GetScheduler();
+            InitializeIncomingOrderJobs(scheduler, "IncomingOrder");
+        }
 
-            // define the job and tie it to our HelloJob class
+        private static void InitializeIncomingOrderJobs(IScheduler scheduler, string groupIdentifier)
+        {
             IJobDetail job = JobBuilder.Create<IncomingOrderJob>()
-                .WithIdentity("IncomingOrderJob", "group1") // name "incomingOrderJob", group "group1"
+                .WithIdentity("job1", groupIdentifier)
                 .Build();
 
-            // Trigger the job to run now, and then every 40 seconds
+            int intervalInSeconds =
+                Convert.ToInt32(ConfigurationManager.AppSettings["IncomingOrderJobIntervalSeconds"]);
+
             ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("IncomingOrderJobTrigger", "group1")
+                .WithIdentity("trigger1", groupIdentifier)
+                .ForJob(job.Key)
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(2)
+                    .WithIntervalInSeconds(intervalInSeconds)
                     .RepeatForever())
                 .Build();
 
-            // Tell quartz to schedule the job using our trigger
             scheduler.ScheduleJob(job, trigger);
+
+            scheduler.ListenerManager.AddJobListener(new IncomingOrderJobListener(),
+                GroupMatcher<JobKey>.GroupEquals(groupIdentifier));
         }
 
         private static IScheduler GetScheduler()
         {
-            ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
-            IScheduler scheduler = schedulerFactory.GetScheduler();
-
+            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
             scheduler.Start();
             return scheduler;
         }
