@@ -29,11 +29,11 @@ namespace QuartzSpike
 
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("trigger1", groupIdentifier)
-                .ForJob(job.Key)
                 .StartNow()
                 .WithSimpleSchedule(x => x
                     .WithIntervalInSeconds(intervalInSeconds)
                     .RepeatForever())
+                .ForJob(job.Key)
                 .Build();
 
             scheduler.ScheduleJob(job, trigger);
