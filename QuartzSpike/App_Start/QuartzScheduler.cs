@@ -2,19 +2,21 @@
 using System.Configuration;
 using Common.Logging;
 using Common.Logging.Simple;
+using Microsoft.Practices.Unity;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Impl.Matchers;
+using Quartz.Spi;
 using RWS.Jobs;
 
 namespace QuartzSpike
 {
     public class QuartzScheduler
     {
-        public static void InitializeQuartzJobs()
+        public static void InitializeQuartzJobs(UnityContainer container)
         {
             LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter {Level = LogLevel.Debug};
-            IScheduler scheduler = GetScheduler();
+            IScheduler scheduler = GetScheduler(container);
             InitializeIncomingOrderJobs(scheduler, "IncomingOrder");
         }
 
@@ -41,9 +43,12 @@ namespace QuartzSpike
                 GroupMatcher<JobKey>.GroupEquals(groupIdentifier));
         }
 
-        private static IScheduler GetScheduler()
+        private static IScheduler GetScheduler(IUnityContainer container)
         {
-            IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            IJobFactory jobFactory = new UnityJobFactory(container);
+            ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
+            IScheduler scheduler = schedulerFactory.GetScheduler();
+            scheduler.JobFactory = jobFactory;
             scheduler.Start();
             return scheduler;
         }

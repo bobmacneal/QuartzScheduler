@@ -17,8 +17,10 @@ namespace QuartzSpike
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-
             RWS.Jobs.Config.UnityConfig.RegisterComponents(container);
+
+            QuartzScheduler.InitializeQuartzJobs(container);
+
 
             //Wire up Unity in the global configuration of Web Api
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

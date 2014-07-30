@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using Quartz;
 
 namespace RWS.Jobs.Config
 {
@@ -13,6 +14,13 @@ namespace RWS.Jobs.Config
         public static void RegisterComponents(IUnityContainer container)
         {
             Repositories.Config.UnityConfig.RegisterComponents(container);
+            //container
+            //    .RegisterType<IJob, IncomingOrderJob>();
+
+            //var orderRequestRespository = container.Resolve<IOrderRequestRespository>();
+            //var m3OrderRespository = container.Resolve<IM3OrderRespository>();
+            //var incomingOrderJob = new IncomingOrderJob(orderRequestRespository, m3OrderRespository);
+            //container.RegisterInstance<IJob>(incomingOrderJob);
         }
     }
 }

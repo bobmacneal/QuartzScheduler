@@ -17,6 +17,12 @@ namespace RWS.Jobs
             _orderRequestRepository = orderRequestRespository;
         }
 
+        //public IncomingOrderJob()
+        //{
+        //    _m3OrderRepository = new M3OrderRespository();
+        //    _orderRequestRepository = new OrderRequestRespository();
+        //}
+
         public void Execute(IJobExecutionContext context)
         {
             try
