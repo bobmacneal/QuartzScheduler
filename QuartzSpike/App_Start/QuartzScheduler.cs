@@ -33,7 +33,6 @@ namespace QuartzSpike
                 .WithSimpleSchedule(x => x
                     .WithIntervalInSeconds(intervalInSeconds)
                     .RepeatForever())
-                .ForJob(job.Key)
                 .Build();
 
             scheduler.ScheduleJob(job, trigger);

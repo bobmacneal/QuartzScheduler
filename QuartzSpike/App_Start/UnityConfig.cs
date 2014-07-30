@@ -1,7 +1,6 @@
 ﻿using System.Web.Http;
 using Microsoft.Practices.Unity;
 using QuartzSpike.Ioc;
-using RWS.Repositories;
 
 namespace QuartzSpike
 {
