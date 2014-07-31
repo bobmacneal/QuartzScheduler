@@ -12,7 +12,7 @@ namespace Jobs.UnitTests
     {
         private IncomingOrderJob _job;
         private Mock<IJobExecutionContext> _jobExecutionContextMock;
-        private Mock<IM3OrderRespository> _m3OrderRepositoryMock;
+        private Mock<IErpOrderRespository> _m3OrderRepositoryMock;
         private Mock<IOrderRequestRespository> _orderRequestRepositoryMock;
         private IList<OrderRequest> _unprocessedOrderRequests;
 
@@ -21,14 +21,14 @@ namespace Jobs.UnitTests
         {
             _jobExecutionContextMock = new Mock<IJobExecutionContext>();
             _orderRequestRepositoryMock = new Mock<IOrderRequestRespository>();
-            _m3OrderRepositoryMock = new Mock<IM3OrderRespository>();
+            _m3OrderRepositoryMock = new Mock<IErpOrderRespository>();
             _job = new IncomingOrderJob(_orderRequestRepositoryMock.Object, _m3OrderRepositoryMock.Object);
 
             _unprocessedOrderRequests = new List<OrderRequest>
             {
-                new OrderRequest {Status = (int) OrderProcessStatusEnum.Initial, Payload = "test payload1"},
-                new OrderRequest {Status = (int) OrderProcessStatusEnum.Initial, Payload = "test payload2"},
-                new OrderRequest {Status = (int) OrderProcessStatusEnum.Initial, Payload = "test payload3"}
+                new OrderRequest {Status = (int) OrderStatusEnumeration.Initial, Payload = "test payload1"},
+                new OrderRequest {Status = (int) OrderStatusEnumeration.Initial, Payload = "test payload2"},
+                new OrderRequest {Status = (int) OrderStatusEnumeration.Initial, Payload = "test payload3"}
             };
             _orderRequestRepositoryMock.Setup(x => x.GetUnproccessedOrderRequests()).Returns(_unprocessedOrderRequests);
             _m3OrderRepositoryMock.Setup(x => x.CreateOrder(It.IsAny<OrderModel>()));
@@ -56,7 +56,7 @@ namespace Jobs.UnitTests
             _job.Execute(_jobExecutionContextMock.Object);
 
             _orderRequestRepositoryMock.Verify(
-                x => x.UpdateStatus(It.IsAny<OrderRequest>(), OrderProcessStatusEnum.Complete), Times.Exactly(3));
+                x => x.UpdateStatus(It.IsAny<OrderRequest>(), OrderStatusEnumeration.Complete), Times.Exactly(3));
         }
     }
 }

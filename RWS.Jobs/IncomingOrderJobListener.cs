@@ -1,7 +1,7 @@
 ﻿using System;
 using Quartz;
 
-namespace RWS.Jobs
+namespace Jobs
 {
     public class IncomingOrderJobListener : IJobListener
     {

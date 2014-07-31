@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Jobs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Repositories;
 
-namespace RWS.Jobs.IntgTests
+namespace Jobs.IntegrationTests
 {
     [TestClass]
     public class IncomingOrderTests
@@ -19,7 +18,7 @@ namespace RWS.Jobs.IntgTests
         public void InitializeBeforeEachTest()
         {
             _orderRequestRespository = new OrderRequestRespository();
-            _incomingOrderJob = new IncomingOrderJob(_orderRequestRespository, new M3OrderRespository());
+            _incomingOrderJob = new IncomingOrderJob(_orderRequestRespository, new ErpOrderRespository());
             _request1 = _orderRequestRespository.AddRequest("test payload 1");
             _request2 = _orderRequestRespository.AddRequest("test payload 2");
             _request3 = _orderRequestRespository.AddRequest("test payload 3");

@@ -28,11 +28,11 @@ namespace Repositories
         public IList<OrderRequest> GetUnproccessedOrderRequests()
         {
             IQueryable<OrderRequest> orderRequests =
-                OrderRequests.Where(s => s.Status == (int) OrderProcessStatusEnum.Initial);
+                OrderRequests.Where(s => s.Status == (int) OrderStatusEnumeration.Initial);
             return orderRequests.ToList();
         }
 
-        public void UpdateStatus(OrderRequest orderRequest, OrderProcessStatusEnum orderProcessStatus)
+        public void UpdateStatus(OrderRequest orderRequest, OrderStatusEnumeration orderProcessStatus)
         {
             orderRequest.Status = (int) orderProcessStatus;
             SaveChanges();

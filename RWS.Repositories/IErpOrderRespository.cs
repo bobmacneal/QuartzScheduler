@@ -1,6 +1,6 @@
 ﻿namespace Repositories
 {
-    public interface IM3OrderRespository
+    public interface IErpOrderRespository
     {
         void CreateOrder(Models.OrderModel orderModel);
     }

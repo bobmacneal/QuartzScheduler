@@ -1,6 +1,6 @@
 ﻿namespace Repositories
 {
-    public enum OrderProcessStatusEnum
+    public enum OrderStatusEnumeration
     {
         Initial = 1,
         Ready = 2,

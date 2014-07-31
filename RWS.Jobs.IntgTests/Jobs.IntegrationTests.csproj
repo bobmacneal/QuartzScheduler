@@ -6,8 +6,8 @@
     <ProjectGuid>{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RWS.Jobs.IntgTests</RootNamespace>
-    <AssemblyName>RWS.Jobs.IntgTests</AssemblyName>
+    <RootNamespace>Jobs.IntegrationTests</RootNamespace>
+    <AssemblyName>Jobs.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

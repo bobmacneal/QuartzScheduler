@@ -1,40 +1,19 @@
-﻿using Quartz;
-using RWS.Jobs;
-using RWS.Models;
+﻿using Repositories;
 
-namespace RWS.Services
+namespace Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
-        private readonly IScheduler _scheduler;
+        private readonly OrderRequestRespository _repository;
 
-        public OrderService(IScheduler scheduler)
+        public OrderService(OrderRequestRespository repository)
         {
-            _scheduler = scheduler;
+            _repository = repository;
         }
 
-        public bool CreateOrder(OrderModel orderModel)
+        public void AddOrderRequest(string requestPayload)
         {
-            IJobDetail job = JobBuilder.Create<CreateOrderJob>()
-                .WithIdentity("job1", "group1")
-                .UsingJobData("Company", orderModel.Company)
-                .UsingJobData("Source", orderModel.Source)
-                .UsingJobData("CustomerNumber", orderModel.CustomerNumber)
-                .UsingJobData("OrderType", orderModel.OrderType)
-                .UsingJobData("CustomersOrderNumber", orderModel.CustomersOrderNumber)
-                .UsingJobData("ReferenceAtCustomer", orderModel.ReferenceAtCustomer)
-                .UsingJobData("OurReferenceNumber", orderModel.OurReferenceNumber)
-                .UsingJobData("ReferenceNumber", orderModel.ReferenceNumber)
-                .Build();
-
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("trigger1", "group1")
-                .StartNow()
-                .Build();
-
-            _scheduler.ScheduleJob(job, trigger);
-
-            return true;
+            _repository.AddRequest(requestPayload);
         }
     }
 }

@@ -6,19 +6,25 @@ using Microsoft.Ajax.Utilities;
 using Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Repositories;
 using Services;
 
 namespace QuartzSpike.Controllers
 {
     public class OrderController : ApiController
     {
+        private readonly IOrderService _orderService;
+
+        public OrderController(IOrderService orderService)
+        {
+            _orderService = orderService;
+        }
+
         // POST http://localhost:55085/api/order
         public HttpResponseMessage Post([FromBody] JToken jsonOrderData)
         {
             try
             {
-                var orderRequest = jsonOrderData.ToString();
+                string orderRequest = jsonOrderData.ToString();
                 var orderData = JsonConvert.DeserializeObject<OrderModel>(orderRequest);
                 string correlationId = orderData.OurReferenceNumber;
                 string source = orderData.Source;
@@ -30,13 +36,7 @@ namespace QuartzSpike.Controllers
                 {
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Source not provided.");
                 }
-
-                //ILog log = LogManager.GetCurrentClassLogger();
-                //log.Debug("AddOrderRequest called***********************************************");
-
-                var orderCreationService = new OrderCreationService(new OrderRequestRespository());
-                orderCreationService.AddOrderRequest(orderRequest);
-
+                _orderService.AddOrderRequest(orderRequest);
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
             catch (Exception ex)

@@ -5,10 +5,10 @@ namespace Repositories
 {
     public interface IOrderRequestRespository
     {
-        DbSet<OrderRequest> OrderRequests { get; set; }
         OrderRequest AddRequest(string payload);
         void DeleteRequest(OrderRequest orderRequest);
         IList<OrderRequest> GetUnproccessedOrderRequests();
-        void UpdateStatus(OrderRequest orderRequest, OrderProcessStatusEnum orderProcessStatus);
+        DbSet<OrderRequest> OrderRequests { get; set; }
+        void UpdateStatus(OrderRequest orderRequest, OrderStatusEnumeration orderStatus);
     }
 }

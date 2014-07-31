@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89CDCD
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.IntgTests", "RWS.Jobs.IntgTests\Jobs.IntgTests.csproj", "{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.IntegrationTests", "RWS.Jobs.IntgTests\Jobs.IntegrationTests.csproj", "{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

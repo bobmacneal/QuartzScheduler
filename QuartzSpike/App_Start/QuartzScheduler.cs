@@ -6,7 +6,6 @@ using Quartz;
 using Quartz.Impl;
 using Quartz.Impl.Matchers;
 using Quartz.Spi;
-using RWS.Jobs;
 
 namespace QuartzSpike
 {

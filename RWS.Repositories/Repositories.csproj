@@ -69,10 +69,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\UnityConfig.cs" />
-    <Compile Include="OrderProcessStatusEnum.cs" />
-    <Compile Include="IM3OrderRespository.cs" />
+    <Compile Include="OrderStatusEnumeration.cs" />
+    <Compile Include="IErpOrderRespository.cs" />
     <Compile Include="IOrderRequestRespository.cs" />
-    <Compile Include="M3OrderRespository.cs" />
+    <Compile Include="ErpOrderRespository.cs" />
     <Compile Include="OrderRequest.cs" />
     <Compile Include="OrderRequestRespository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

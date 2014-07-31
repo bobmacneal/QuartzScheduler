@@ -8,10 +8,10 @@ namespace Jobs
 {
     public class IncomingOrderJob : IJob
     {
-        private readonly IM3OrderRespository _m3OrderRepository;
+        private readonly IErpOrderRespository _m3OrderRepository;
         private readonly IOrderRequestRespository _orderRequestRepository;
 
-        public IncomingOrderJob(IOrderRequestRespository orderRequestRespository, IM3OrderRespository m3OrderRespository)
+        public IncomingOrderJob(IOrderRequestRespository orderRequestRespository, IErpOrderRespository m3OrderRespository)
         {
             _m3OrderRepository = m3OrderRespository;
             _orderRequestRepository = orderRequestRespository;
@@ -26,7 +26,7 @@ namespace Jobs
                 {
                     var orderModel = new OrderModel();
                     _m3OrderRepository.CreateOrder(orderModel);
-                    _orderRequestRepository.UpdateStatus(unproccessedOrderRequest, OrderProcessStatusEnum.Complete);
+                    _orderRequestRepository.UpdateStatus(unproccessedOrderRequest, OrderStatusEnumeration.Complete);
                 }
             }
             catch (Exception err)
