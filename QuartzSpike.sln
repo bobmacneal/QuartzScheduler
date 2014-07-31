@@ -7,15 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzSpike", "QuartzSpike\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzSpike.Tests", "QuartzSpike.Tests\QuartzSpike.Tests.csproj", "{34A9DC29-19F2-4D70-A827-7A0D56AF14AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Services", "RWS.Services\RWS.Services.csproj", "{06FB89BE-4195-4D70-A33A-8AC652B4E98A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "RWS.Services\Services.csproj", "{06FB89BE-4195-4D70-A33A-8AC652B4E98A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Models", "RWS.Models\RWS.Models.csproj", "{AFF4BEB5-D135-4750-A173-4D09CFFA6287}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "RWS.Models\Models.csproj", "{AFF4BEB5-D135-4750-A173-4D09CFFA6287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Repositories", "RWS.Repositories\RWS.Repositories.csproj", "{8356AFED-466F-42B6-8A2B-A96FDAC06095}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "RWS.Repositories\Repositories.csproj", "{8356AFED-466F-42B6-8A2B-A96FDAC06095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs", "RWS.Jobs\RWS.Jobs.csproj", "{507D1203-88F1-4F5D-815A-4AC251305008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs", "RWS.Jobs\Jobs.csproj", "{507D1203-88F1-4F5D-815A-4AC251305008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs.UnitTests", "RWS.Jobs.Test\RWS.Jobs.UnitTests.csproj", "{1A7EC192-A837-45EF-90D9-5C6959C4107B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.UnitTests", "RWS.Jobs.Test\Jobs.UnitTests.csproj", "{1A7EC192-A837-45EF-90D9-5C6959C4107B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89CDCD97-D00B-41A9-88F0-3E98D0AA776A}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{89CDCD
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWS.Jobs.IntgTests", "RWS.Jobs.IntgTests\RWS.Jobs.IntgTests.csproj", "{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jobs.IntgTests", "RWS.Jobs.IntgTests\Jobs.IntgTests.csproj", "{CFDABEE8-DB6E-4C8C-B398-0DA1BCFF0871}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

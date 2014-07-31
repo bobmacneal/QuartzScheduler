@@ -79,13 +79,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RWS.Jobs\RWS.Jobs.csproj">
+    <ProjectReference Include="..\RWS.Jobs\Jobs.csproj">
       <Project>{507d1203-88f1-4f5d-815a-4ac251305008}</Project>
-      <Name>RWS.Jobs</Name>
+      <Name>Jobs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RWS.Repositories\RWS.Repositories.csproj">
+    <ProjectReference Include="..\RWS.Repositories\Repositories.csproj">
       <Project>{8356afed-466f-42b6-8a2b-a96fdac06095}</Project>
-      <Name>RWS.Repositories</Name>
+      <Name>Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

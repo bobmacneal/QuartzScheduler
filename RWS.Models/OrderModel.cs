@@ -1,4 +1,4 @@
-﻿namespace RWS.Models
+﻿namespace Models
 {
     public class OrderModel
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
 
-namespace RWS.Repositories.Config
+namespace Repositories.Config
 {
     /// <summary>
     ///     Provides a static method that takes in a container and registers the app's services, repositories, etc.

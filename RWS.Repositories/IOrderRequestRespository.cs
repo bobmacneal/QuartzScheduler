@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace RWS.Repositories
+namespace Repositories
 {
     public interface IOrderRequestRespository
     {

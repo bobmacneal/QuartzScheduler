@@ -1,13 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RWS.Repositories;
+﻿using System.Collections.Generic;
+using Jobs;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Repositories;
 
 namespace RWS.Jobs.IntgTests
 {
     [TestClass]
     public class IncomingOrderTests
     {
-        private IOrderRequestRespository _orderRequestRespository;
         private IncomingOrderJob _incomingOrderJob;
+        private IOrderRequestRespository _orderRequestRespository;
         private OrderRequest _request1;
         private OrderRequest _request2;
         private OrderRequest _request3;
@@ -34,13 +36,14 @@ namespace RWS.Jobs.IntgTests
         [TestMethod]
         public void Execute()
         {
-
-            var unproccessedOrderRequestsBeforeProcessing = _orderRequestRespository.GetUnproccessedOrderRequests();
+            IList<OrderRequest> unproccessedOrderRequestsBeforeProcessing =
+                _orderRequestRespository.GetUnproccessedOrderRequests();
             Assert.IsTrue(unproccessedOrderRequestsBeforeProcessing.Count >= 3);
 
             _incomingOrderJob.Execute(null);
 
-            var unproccessedOrderRequestsAfterProcessing = _orderRequestRespository.GetUnproccessedOrderRequests();
+            IList<OrderRequest> unproccessedOrderRequestsAfterProcessing =
+                _orderRequestRespository.GetUnproccessedOrderRequests();
             Assert.AreEqual(0, unproccessedOrderRequestsAfterProcessing.Count);
         }
     }

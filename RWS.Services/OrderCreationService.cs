@@ -1,6 +1,6 @@
-﻿using RWS.Repositories;
+﻿using Repositories;
 
-namespace RWS.Services
+namespace Services
 {
     public class OrderCreationService
     {

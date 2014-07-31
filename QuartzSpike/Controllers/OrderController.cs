@@ -3,11 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Ajax.Utilities;
+using Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RWS.Models;
-using RWS.Repositories;
-using RWS.Services;
+using Repositories;
+using Services;
 
 namespace QuartzSpike.Controllers
 {

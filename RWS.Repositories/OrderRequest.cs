@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RWS.Repositories
+namespace Repositories
 {
     [Table("OrderRequest")]
     public class OrderRequest

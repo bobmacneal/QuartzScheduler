@@ -1,4 +1,4 @@
-﻿namespace RWS.Repositories
+﻿namespace Repositories
 {
     public enum OrderProcessStatusEnum
     {

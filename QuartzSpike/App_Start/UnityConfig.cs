@@ -17,7 +17,7 @@ namespace QuartzSpike
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-            RWS.Jobs.Config.UnityConfig.RegisterComponents(container);
+            Jobs.Config.UnityConfig.RegisterComponents(container);
 
             QuartzScheduler.InitializeQuartzJobs(container);
 

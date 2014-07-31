@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Models;
 using Moq;
 using Quartz;
-using RWS.Models;
-using RWS.Repositories;
+using Repositories;
 
-namespace RWS.Jobs.UnitTests
+namespace Jobs.UnitTests
 {
     [TestClass]
     public class IncomingOrderTests
@@ -55,7 +55,8 @@ namespace RWS.Jobs.UnitTests
         {
             _job.Execute(_jobExecutionContextMock.Object);
 
-            _orderRequestRepositoryMock.Verify(x => x.UpdateStatus(It.IsAny<OrderRequest>(), OrderProcessStatusEnum.Complete), Times.Exactly(3));
+            _orderRequestRepositoryMock.Verify(
+                x => x.UpdateStatus(It.IsAny<OrderRequest>(), OrderProcessStatusEnum.Complete), Times.Exactly(3));
         }
     }
 }

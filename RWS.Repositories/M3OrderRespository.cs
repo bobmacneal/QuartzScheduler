@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace RWS.Repositories
+namespace Repositories
 {
     public class M3OrderRespository : IM3OrderRespository
     {

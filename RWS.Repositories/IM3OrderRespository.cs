@@ -1,4 +1,4 @@
-﻿namespace RWS.Repositories
+﻿namespace Repositories
 {
     public interface IM3OrderRespository
     {

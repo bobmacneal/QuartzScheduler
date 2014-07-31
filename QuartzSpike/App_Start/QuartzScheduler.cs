@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using Common.Logging;
-using Common.Logging.Simple;
+using Jobs;
 using Microsoft.Practices.Unity;
 using Quartz;
 using Quartz.Impl;
@@ -13,14 +12,13 @@ namespace QuartzSpike
 {
     public class QuartzScheduler
     {
-        public static void InitializeQuartzJobs(UnityContainer container)
+        public static void InitializeQuartzJobs(IUnityContainer container)
         {
-            LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter {Level = LogLevel.Debug};
-            IScheduler scheduler = GetScheduler(container);
-            InitializeIncomingOrderJobs(scheduler, "IncomingOrder");
+            IScheduler scheduler = GetSchedulerFromUnityJobFactory(container);
+            IncomingOrderJob(scheduler, "IncomingOrder");
         }
 
-        private static void InitializeIncomingOrderJobs(IScheduler scheduler, string groupIdentifier)
+        private static void IncomingOrderJob(IScheduler scheduler, string groupIdentifier)
         {
             IJobDetail job = JobBuilder.Create<IncomingOrderJob>()
                 .WithIdentity("job1", groupIdentifier)
@@ -43,12 +41,12 @@ namespace QuartzSpike
                 GroupMatcher<JobKey>.GroupEquals(groupIdentifier));
         }
 
-        private static IScheduler GetScheduler(IUnityContainer container)
+        private static IScheduler GetSchedulerFromUnityJobFactory(IUnityContainer container)
         {
-            IJobFactory jobFactory = new UnityJobFactory(container);
             ISchedulerFactory schedulerFactory = new StdSchedulerFactory();
             IScheduler scheduler = schedulerFactory.GetScheduler();
-            scheduler.JobFactory = jobFactory;
+            IJobFactory unityJobFactory = new UnityJobFactory(container);
+            scheduler.JobFactory = unityJobFactory;
             scheduler.Start();
             return scheduler;
         }

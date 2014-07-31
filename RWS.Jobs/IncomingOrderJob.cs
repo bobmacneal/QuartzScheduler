@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Models;
 using Quartz;
-using RWS.Models;
-using RWS.Repositories;
+using Repositories;
 
-namespace RWS.Jobs
+namespace Jobs
 {
     public class IncomingOrderJob : IJob
     {
@@ -16,12 +16,6 @@ namespace RWS.Jobs
             _m3OrderRepository = m3OrderRespository;
             _orderRequestRepository = orderRequestRespository;
         }
-
-        //public IncomingOrderJob()
-        //{
-        //    _m3OrderRepository = new M3OrderRespository();
-        //    _orderRequestRepository = new OrderRequestRespository();
-        //}
 
         public void Execute(IJobExecutionContext context)
         {
