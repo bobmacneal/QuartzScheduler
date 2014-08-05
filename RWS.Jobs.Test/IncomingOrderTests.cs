@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Models;
+using Models.Entities;
 using Moq;
 using Quartz;
 using Repositories;
+using Services;
 
 namespace Jobs.UnitTests
 {
@@ -12,17 +14,15 @@ namespace Jobs.UnitTests
     {
         private IncomingOrderJob _job;
         private Mock<IJobExecutionContext> _jobExecutionContextMock;
-        private Mock<IErpOrderRespository> _m3OrderRepositoryMock;
-        private Mock<IOrderRequestRespository> _orderRequestRepositoryMock;
+        private Mock<IOrderService> _orderServiceMock;
         private IList<OrderRequest> _unprocessedOrderRequests;
 
         [TestInitialize]
         public void InitializeBeforeEachTest()
         {
+            _orderServiceMock = new Mock<IOrderService>();
             _jobExecutionContextMock = new Mock<IJobExecutionContext>();
-            _orderRequestRepositoryMock = new Mock<IOrderRequestRespository>();
-            _m3OrderRepositoryMock = new Mock<IErpOrderRespository>();
-            _job = new IncomingOrderJob(_orderRequestRepositoryMock.Object, _m3OrderRepositoryMock.Object);
+            _job = new IncomingOrderJob(_orderServiceMock.Object);
 
             _unprocessedOrderRequests = new List<OrderRequest>
             {
@@ -30,33 +30,31 @@ namespace Jobs.UnitTests
                 new OrderRequest {Status = (int) OrderStatusEnumeration.Initial, Payload = "test payload2"},
                 new OrderRequest {Status = (int) OrderStatusEnumeration.Initial, Payload = "test payload3"}
             };
-            _orderRequestRepositoryMock.Setup(x => x.GetUnproccessedOrderRequests()).Returns(_unprocessedOrderRequests);
-            _m3OrderRepositoryMock.Setup(x => x.CreateOrder(It.IsAny<OrderModel>()));
+
+            _orderServiceMock.Setup(x => x.GetUnproccessedOrderRequests()).Returns(_unprocessedOrderRequests);
+            _orderServiceMock.Setup(x => x.CreateErpOrder(It.IsAny<OrderModel>()));
         }
 
         [TestMethod]
         public void Execute_ReadRecordsFromOrderRequestRepository()
         {
             _job.Execute(_jobExecutionContextMock.Object);
-
-            _orderRequestRepositoryMock.Verify(x => x.GetUnproccessedOrderRequests());
+            _orderServiceMock.Verify(x => x.GetUnproccessedOrderRequests());
         }
 
         [TestMethod]
         public void Execute_CollaboratesWithM3OrderRepository()
         {
             _job.Execute(_jobExecutionContextMock.Object);
-
-            _m3OrderRepositoryMock.Verify(x => x.CreateOrder(It.IsAny<OrderModel>()), Times.Exactly(3));
+            _orderServiceMock.Verify(x => x.CreateErpOrder(It.IsAny<OrderModel>()), Times.Exactly(3));
         }
 
         [TestMethod]
         public void Execute_UpdatesStatusForRecordsFromOrderRequestRepository()
         {
             _job.Execute(_jobExecutionContextMock.Object);
-
-            _orderRequestRepositoryMock.Verify(
-                x => x.UpdateStatus(It.IsAny<OrderRequest>(), OrderStatusEnumeration.Complete), Times.Exactly(3));
+            _orderServiceMock.Verify(
+                x => x.SetOrderStatusComplete(It.IsAny<OrderRequest>()), Times.Exactly(3));
         }
     }
 }

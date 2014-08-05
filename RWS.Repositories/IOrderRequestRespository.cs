@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
+using Models.Entities;
 
 namespace Repositories
 {

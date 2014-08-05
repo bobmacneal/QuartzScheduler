@@ -73,7 +73,6 @@
     <Compile Include="IErpOrderRespository.cs" />
     <Compile Include="IOrderRequestRespository.cs" />
     <Compile Include="ErpOrderRespository.cs" />
-    <Compile Include="OrderRequest.cs" />
     <Compile Include="OrderRequestRespository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

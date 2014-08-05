@@ -7,7 +7,6 @@ namespace Services.Config
         public static void RegisterComponents(IUnityContainer container)
         {
             Repositories.Config.UnityConfig.RegisterComponents(container);
-
             container
                 .RegisterType<IOrderService, OrderService>();
         }

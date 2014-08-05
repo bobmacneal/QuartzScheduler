@@ -86,6 +86,10 @@
       <Project>{8356afed-466f-42b6-8a2b-a96fdac06095}</Project>
       <Name>Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RWS.Services\Services.csproj">
+      <Project>{06fb89be-4195-4d70-a33a-8ac652b4e98a}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

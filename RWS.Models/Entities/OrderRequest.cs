@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Repositories
+namespace Models.Entities
 {
     [Table("OrderRequest")]
     public class OrderRequest

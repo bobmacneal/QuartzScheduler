@@ -1,32 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using Models;
+using Models.Entities;
 using Quartz;
-using Repositories;
+using Services;
 
 namespace Jobs
 {
     public class IncomingOrderJob : IJob
     {
-        private readonly IErpOrderRespository _m3OrderRepository;
-        private readonly IOrderRequestRespository _orderRequestRepository;
+        private readonly IOrderService _orderService;
 
-        public IncomingOrderJob(IOrderRequestRespository orderRequestRespository, IErpOrderRespository m3OrderRespository)
+        public IncomingOrderJob(IOrderService orderService)
         {
-            _m3OrderRepository = m3OrderRespository;
-            _orderRequestRepository = orderRequestRespository;
+            _orderService = orderService;
         }
 
         public void Execute(IJobExecutionContext context)
         {
             try
             {
-                IList<OrderRequest> unproccessedOrderRequests = _orderRequestRepository.GetUnproccessedOrderRequests();
+                IList<OrderRequest> unproccessedOrderRequests = _orderService.GetUnproccessedOrderRequests();
                 foreach (OrderRequest unproccessedOrderRequest in unproccessedOrderRequests)
                 {
                     var orderModel = new OrderModel();
-                    _m3OrderRepository.CreateOrder(orderModel);
-                    _orderRequestRepository.UpdateStatus(unproccessedOrderRequest, OrderStatusEnumeration.Complete);
+                    _orderService.CreateErpOrder(orderModel);
+                    _orderService.SetOrderStatusComplete(unproccessedOrderRequest);
                 }
             }
             catch (Exception err)
